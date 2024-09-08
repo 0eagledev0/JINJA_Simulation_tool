@@ -1,11 +1,17 @@
 ﻿import tkinter as tk
 from tkinter import filedialog, font
 from tools_jinja import *
+
+# Initialize global variables for file paths
 variable=""
 jinja=""
 
 
 def browse_file(lettre):
+    """
+    Opens a file dialog to select a file based on the given condition.
+    Updates the global variable or jinja file path accordingly.
+    """
     global variable, jinja
     if(lettre):
         selected_value = selected_option.get()
@@ -40,7 +46,14 @@ def browse_file(lettre):
 
 
 def submit_action():
+    """
+    Handles the submit button action. Processes selected files based on the chosen option
+    and displays the result in a new window.
+    """
     def copy_to_clipboard():
+        """
+        Copies the content of the result text box to the clipboard.
+        """
         content = text_box.get("1.0", tk.END)
         new_window.clipboard_clear()
         new_window.clipboard_append(content)
@@ -87,7 +100,7 @@ def submit_action():
         tk.messagebox.showerror("Error", f"An error occurred: {str(e)}")
 
 
-
+# Main GUI setup
 root = tk.Tk()
 root.title("Interface Graphique")
 window_width = 800
@@ -98,15 +111,16 @@ position_x =(screen_width // 2) - (window_width // 2)
 position_y = (screen_height // 2) - (window_height // 2)
 root.geometry(f"{window_width}x{window_height}+{position_x}+{position_y}")
 root.configure(bg="black")
-
+# Define fonts for various GUI elements
 title_font = font.Font(family="Arial", size=20, weight="bold", underline=5)
 dropdown_font = font.Font(family="Arial", size=12)
 button_font = font.Font(family="Arial", weight="bold", size=12)
 subtitle_font = font.Font(family="Arial", weight="bold", size=10)
 submit_button_font = font.Font(family="Arial", weight="bold", size=20)
-
+# Title label
 title1 = tk.Label(root, text="Choose the options",bg="black",fg="white", font=title_font)
 title1.pack(pady=10)
+# Dropdown menu for file type selection
 options = [
     "Variable (Jinja) + Template (Jinja)",
     "Variable (Yaml) + Template (Jinja)",
@@ -119,21 +133,21 @@ menu = dropdown.nametowidget(dropdown.menuname)
 menu.configure( fg="black", bg="white", font=dropdown_font)
 dropdown.config(fg="black", bg="white", highlightthickness=1, font=dropdown_font)
 dropdown.pack(pady=10)
-
+# Label and button for selecting variable file
 title2 = tk.Label(root, text="Choose the variable file", bg="black", fg="white", font=title_font)
 title2.pack(pady=10)
 subtitle = tk.Label(root, text="File not selected", fg="red", bg="black" , font=subtitle_font)
 subtitle.pack(pady=5)
 browse_button1 = tk.Button(root, text="Browse", command=lambda: browse_file(True),fg="black",bg="white", font=button_font)
 browse_button1.pack(pady=10)
-
+# Label and button for selecting template file
 title3 = tk.Label(root, text="Choose the template file",bg="black",fg="white", font=title_font)
 title3.pack(pady=10)
 subtitleb = tk.Label(root, text="File not selected",fg="red",bg="black" , font=subtitle_font)
 subtitleb.pack(pady=5)
 browse_button2 = tk.Button(root, text="Browse", command=lambda: browse_file(False),fg="black",bg="white", font=button_font)
 browse_button2.pack(pady=10)
-
+# Submit button
 submit_button = tk.Button(root, text="Submit", command=submit_action,fg="white",bg="blue", font=submit_button_font)
 submit_button.pack(pady=10)
 root.mainloop()
