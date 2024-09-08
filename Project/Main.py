@@ -1,17 +1,37 @@
 ﻿import tkinter as tk
 from tkinter import filedialog, font
 from tools_jinja import *
- 
+variable=""
+jinja=""
+
+
 def browse_file(lettre):
-    file_path = filedialog.askopenfilename()
+    global variable, jinja
     if(lettre):
-        global variable, jinja
+        selected_value = selected_option.get()
+        match selected_value:
+            case "Variable (Jinja) + Template (Jinja)":
+                file_path = filedialog.askopenfilename(
+                    filetypes=[("Jinja Files", "*.jinja;*.j2")]
+                )
+            case "Variable (Yaml) + Template (Jinja)":
+                file_path = filedialog.askopenfilename(
+                    filetypes=[("Yaml Files", "*.yml")]
+                )
+            case "Variable (JSON) + Template (Jinja)":
+                file_path = filedialog.askopenfilename(
+                    filetypes=[("Jinja Files", "*.json")]
+                )
         variable = file_path
         if file_path:
             subtitle.config(text=f"File selected: {file_path}",fg="blue")
         else:
             subtitle.config(text="File not selected",fg="red")
+
     else:
+        file_path = filedialog.askopenfilename(
+            filetypes=[("Jinja Files", "*.jinja;*.j2")]
+        )
         jinja = file_path
         if file_path:
             subtitleb.config(text=f"File selected: {file_path}",fg="blue")
@@ -96,8 +116,8 @@ selected_option = tk.StringVar(root)
 selected_option.set(options[0])
 dropdown =tk.OptionMenu(root,selected_option,*options)
 menu = dropdown.nametowidget(dropdown.menuname)
-menu.configure(bg="black", fg="white", font=dropdown_font)
-dropdown.config(bg="black", fg="white", highlightthickness=1, font=dropdown_font)
+menu.configure( fg="black", bg="white", font=dropdown_font)
+dropdown.config(fg="black", bg="white", highlightthickness=1, font=dropdown_font)
 dropdown.pack(pady=10)
 
 title2 = tk.Label(root, text="Choose the variable file", bg="black", fg="white", font=title_font)
