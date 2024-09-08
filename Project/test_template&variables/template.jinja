@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            {% for item in items %}
+                <li><a href="{{ active_link }}">{{ item }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+    <h1>{{ title }}</h1>
+    <p>This is a sample page using Jinja2 templates.</p>
+</body>
+</html>

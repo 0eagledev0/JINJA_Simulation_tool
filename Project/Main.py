@@ -72,7 +72,7 @@ def submit_action():
         screen_height = root.winfo_screenheight()
         position_x = (screen_width // 2) - (900 // 2)
         position_y = (screen_height // 2) - (200 // 2)
-        new_window.geometry(f"{900}x{200}+{position_x}+{position_y}")
+        new_window.geometry(f"{900}x{400}+{position_x}+{position_y}")
 
         copy_button = tk.Button(new_window, text="Copy to the Clipboard", command=copy_to_clipboard)
         copy_button.pack(pady=10, anchor="n")

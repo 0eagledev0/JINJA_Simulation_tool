@@ -1,0 +1,7 @@
+﻿# variables.yaml
+active_link: "{{ recordtype }}"
+title: "Welcome to the Page"
+items:
+  - "Home"
+  - "About"
+  - "Contact"
