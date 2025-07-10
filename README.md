@@ -18,7 +18,7 @@ This project provides a graphical user interface (GUI) for rendering templates u
 - **Error Handling:** Displays error messages if files are not selected or if an error occurs during rendering.
 
 ## Prerequisites
-- Python 3.6, 3.7, 3.8, 3.9, 3.10, or 3.11
+- Python version > 3.6 
 - Tkinter (usually included with Python)
 - `jinja2` library
 - `pyyaml` library
